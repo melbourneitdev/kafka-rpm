@@ -2,6 +2,10 @@ kafka-rpm
 =========
 Scripting to create a CentOS RPM for Kafka.
 
+Note
+=====
+This fork is to update Kafka to version 8.1.1, fix minor issue (:core:signArchives FAILED) and modify so it will work in production (check for JRE rather than JDK).
+
 Introduction
 =====
 This is simply an improved/updated version of what Mark Poole created and posted on his website https://poole.im/apache-kafka-latest-rpm-for-centos-rhel-6/

@@ -13,7 +13,8 @@ Distribution: Niels Basjes
 Vendor: Niels Basjes
 Packager: Niels Basjes <kafka@basjes.nl>
 
-Requires: jdk >= 1.6
+BuildRequires: jdk >= 1.6
+Requires: jre >= 1.6
 Requires(pre): shadow-utils
 Requires: zookeeper >= 3.3.1
 
@@ -58,7 +59,7 @@ alternatives --remove kafkahome  /opt/%{name}-%{version}
 %build
 # Build package
 
-./gradlew releaseTarGz
+./gradlew releaseTarGz -x signArchives
 
 %install
 
@@ -89,6 +90,9 @@ echo 'export PATH=${PATH}:/opt/kafka/bin' > %{buildroot}/etc/profile.d/kafka.sh
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon May 12 2014 Guy Gershoni <guy@conchus.com>
+- Added "-x signArchives" to stop ":core:signArchives FAILED" error
+- Checking for JRE instead of JDK for install.  Build still needs JDK. 
 * Mon Sep 16 2013 Niels Basjes <kafka@basjes.nl>
 - Refactoring the scripting
 * Fri Mar 15 2013 Mark Poole <mpoole@apache.org>
